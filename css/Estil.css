@@ -1,0 +1,795 @@
+/* Variables de colores y fuentes */
+:root {
+    --primary-color: #0078bf;      /* Azul médico principal */
+    --primary-dark: #005c90;       /* Azul oscuro para hover */
+    --secondary-color: #4caf50;    /* Verde para elementos de acción */
+    --accent-color: #ff6b6b;       /* Acento para emergencias */
+    --light-color: #f9f9f9;        /* Color claro para fondos */
+    --dark-color: #333333;         /* Color oscuro para textos */
+    --gray-color: #757575;         /* Gris para textos secundarios */
+    --border-color: #e0e0e0;       /* Color para bordes */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra estándar */
+    --transition: all 0.3s ease;   /* Transición estándar */
+}
+
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: var(--light-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-menu li a {
+    color: var(--dark-color);
+    font-weight: 600;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    color: var(--primary-color);
+}
+
+.nav-menu li a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-menu li a:hover:after,
+.nav-menu li a.active:after {
+    width: 100%;
+}
+
+.emergency-contact {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.emergency-icon {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.emergency-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    margin-bottom: -5px;
+}
+
+.emergency-phone {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark-color);
+    transition: var(--transition);
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #0078bf 0%, #005c90 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('Imágenes/pattern.png');
+    background-size: 200px;
+    opacity: 0.1;
+}
+
+.header-content {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header-subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Sección de servicios */
+.services-section {
+    padding: 5rem 2rem;
+}
+
+.services-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.services-title::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.services-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 2rem auto 3rem;
+    color: var(--gray-color);
+    font-size: 1.1rem;
+}
+
+/* Contenedor de tarjetas */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+/* Estilos de tarjeta */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.service-features {
+    margin-bottom: 1rem;
+    padding-left: 1.2rem;
+}
+
+.service-features li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.service-features li::before {
+    content: '✓';
+    color: var(--secondary-color);
+    font-weight: bold;
+    position: absolute;
+    left: -1.2rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: var(--gray-color);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition);
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+/* Sección CTA (Call to Action) */
+.cta-section {
+    background-color: var(--accent-color);
+    background-image: linear-gradient(135deg, rgba(255, 107, 107, 0.9) 0%, rgba(255, 107, 107, 0.8) 100%), url('Imágenes/emergency-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+    margin: 4rem 0 0;
+}
+
+.cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.btn-emergency {
+    display: inline-block;
+    background-color: white;
+    color: var(--accent-color);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.btn-emergency:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+.footer {
+    background-color: #00263e;
+    color: white;
+    padding: 4rem 2rem 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-column h4 {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.footer-column ul li a:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+.footer-column address {
+    font-style: normal;
+    margin-bottom: 1.5rem;
+}
+
+.footer-column address p {
+    margin-bottom: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.social-icons a img {
+    width: 18px;
+    height: 18px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 0;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .header-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        padding: 1rem;
+    }
+    
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    .emergency-contact {
+        display: none;
+    }
+    
+    .header {
+        padding: 3rem 1rem;
+    }
+    
+    .header-title {
+        font-size: 2.2rem;
+    }
+    
+    .services-section {
+        padding: 3rem 1rem;
+    }
+    
+    .services-title {
+        font-size: 2rem;
+    }
+    
+    .footer-container {
+        gap: 3rem;
+    }
+    
+    .footer-column {
+        flex-basis: 45%;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-title {
+        font-size: 1.8rem;
+    }
+    
+    .header-subtitle {
+        font-size: 1rem;
+    }
+    
+    .services-title {
+        font-size: 1.8rem;
+    }
+    
+    .services-description {
+        font-size: 1rem;
+    }
+    
+    .footer-column {
+        flex-basis: 100%;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card, .header-content, .services-title, .services-description {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Estilos adicionales para elementos médicos */
+.medical-icons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 120, 191, 0.1);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.medical-icons img {
+    width: 28px;
+    height: 28px;
+}
+
+/* Estilos para tablas médicas */
+.medical-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.medical-table th, .medical-table td {
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    text-align: left;
+}
+
+.medical-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.medical-table tr:nth-child(even) {
+    background-color: rgba(0, 120, 191, 0.05);
+}
+
+/* Estilo para información de doctor */
+.doctor-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.doctor-image {
+    height: 250px;
+    overflow: hidden;
+}
+
+.doctor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.doctor-info {
+    padding: 1.5rem;
+}
+
+.doctor-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 0.3rem;
+}
+
+.doctor-specialty {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* CSS adicional para centrar el título y unificar los iconos */
+/* Puedes guardar este archivo como additional-styles.css o añadirlo a tu CSS existente */
+
+/* Corrección para centrar el título "Nuestros Servicios" */
+.services-title {
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: none;
+    display: block;
+}
+
+/* CSS adicional para centrar el título y establecer iconos en azul claro */
+/* Puedes guardar este archivo como additional-styles.css o añadirlo a tu CSS existente */
+
+/* Corrección para centrar el título "Nuestros Servicios" */
+.services-title {
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: none;
+    display: block;
+}
+
+/* Iconos de redes sociales en color azul claro */
+.social-icons a {
+    background-color: #4db8ff; /* Azul claro para los iconos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: #2aa3ff; /* Un tono más oscuro para el hover */
+    transform: translateY(-3px);
+}
+
+.social-icons a img {
+    filter: brightness(0) invert(1); /* Convierte todos los iconos a color blanco */
+    width: 20px;
+    height: 20px;
+}
+
+/* Estilos adicionales para la animación de las tarjetas */
+.card.animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

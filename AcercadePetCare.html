@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Veterinaria PetCare - Cuidamos a quien te acompaña</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="Icons/favicon_io(2)/favicon.ico" type="image/x-icon">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <style>
+    /* Variables de raíz para estilo consistente */
+    :root {
+      --primary-color: #4EA5D9; /* Azul veterinario más moderno */
+      --secondary-color: #2A7AB0; /* Azul más oscuro para énfasis */
+      --accent-color: #F7A072; /* Naranja cálido para acentos */
+      --text-color: #333333; /* Color de texto principal */
+      --light-text: #ffffff; /* Color de texto claro */
+      --light-bg: #F9F9F9; /* Fondo claro */
+      --font-primary: 'Montserrat', sans-serif; /* Fuente principal más moderna */
+      --font-secondary: 'Open Sans', sans-serif; /* Fuente secundaria */
+    }
+
+    /* Reset y estilo de cuerpo */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-secondary);
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Navegación principal */
+    .navbar {
+      background-color: var(--light-text);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .navbar-brand {
+      font-family: var(--font-primary);
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .navbar-brand img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .navbar .nav-link {
+      color: var(--text-color);
+      font-weight: 500;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .navbar .btn-appointment {
+      background-color: var(--accent-color);
+      color: white;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .navbar .btn-appointment:hover {
+      background-color: #E58F62;
+      transform: translateY(-2px);
+    }
+
+    /* Estilo de la sección de encabezado */
+    .header-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: var(--light-text);
+      padding: 5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-section::after {
+      content: '';
+      position: absolute;
+      bottom: -5%;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background-color: var(--light-bg);
+      transform: skewY(-3deg);
+      z-index: 1;
+    }
+
+    .header-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-section h1 {
+      font-family: var(--font-primary);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-section h1 img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-left: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border: 3px solid white;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .header-section h1 img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Badges bajo el título */
+    .badges-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 2rem;
+    }
+
+    .badge-item {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 8px 15px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .badge-item i {
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+
+    /* Contenedor flexible para imagen y texto */
+    .content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      gap: 40px;
+    }
+
+    .content-wrapper img {
+      width: 45%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.5s ease;
+      object-fit: cover;
+    }
+
+    .content-wrapper img:hover {
+      transform: scale(1.02);
+    }
+
+    .text-content {
+      width: 55%;
+      text-align: left;
+    }
+
+    .text-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Estilo de los botones */
+    .btn-primary {
+      padding: 0.75rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-right: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: #E58F62;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-outline {
+      padding: 0.75rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background-color: white;
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Sección de servicios */
+    .services-section {
+      padding: 5rem 2rem;
+      background-color: var(--light-bg);
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      font-family: var(--font-primary);
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: #777;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--accent-color);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      background-color: rgba(78, 165, 217, 0.1);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+    }
+
+    .service-icon i {
+      font-size: 2rem;
+      color: var(--primary-color);
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .service-card p {
+      color: #777;
+      font-size: 0.95rem;
+    }
+
+    /* Sección de testimonios */
+    .testimonials-section {
+      background-color: #EAF4FC;
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    .testimonials-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      font-size: 5rem;
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      color: rgba(78, 165, 217, 0.1);
+      font-family: serif;
+    }
+
+    .testimonial-text {
+      margin-bottom: 20px;
+      font-style: italic;
+      color: #555;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .testimonial-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    .author-info p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .testimonial-rating {
+      color: #FFD700;
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+
+    /* Footer mejorado */
+    .footer {
+      background: linear-gradient(135deg, #2A7AB0 0%, #1C5D8B 100%);
+      color: white;
+      padding: 60px 0 0;
+      font-family: var(--font-secondary);
+      position: relative;
+    }
+
+    .footer-wave {
+      position: absolute;
+      top: -70px;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%232A7AB0'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%232A7AB0'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%232A7AB0'%3E%3C/path%3E%3C/svg%3E");
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .footer-logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 2px solid white;
+    }
+
+    .footer-logo span {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      font-family: var(--font-primary);
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin: 20px;
+    }
+
+    .footer-column h4 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: white;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 12px;
+      font-family: var(--font-primary);
+    }
+
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-color);
+    }
+
+    .footer-column ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-column ul li i {
+      margin-right: 10px;
+      color: var(--accent-color);
+    }
+
+    .footer-column ul li a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-column ul li a:hover {
+      color: white;
+    }
+
+    .contact-info p {
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      color: var(--accent-color);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a img {
+      width: 20px;
+      height: 20px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    .newsletter-form {
+      margin-top: 20px;
+    }
+
+    .newsletter-form .form-control {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      padding: 12px 15px;
+      border-radius: 30px;
+    }
+
+    .newsletter-form .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .newsletter-form .btn {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-form .btn:hover {
+      background-color: #E58F62;
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Media Queries */
+    @media (max-width: 992px) {
+      .service-card {
+        padding: 20px;
+      }
+      
+      .content-wrapper {
+        padding: 2rem 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .content-wrapper img {
+        width: 90%;
+        margin-right: 0;
+        margin-bottom: 30px;
+      }
+
+      .text-content {
+        width: 100%;
+        text-align: center;
+      }
+
+      .badges-container {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .service-card {
+        margin-bottom: 20px;
+      }
+
+      .header-section h1 {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-section h1 img {
+        margin-left: 0;
+        margin-top: 15px;
+      }
+      
+      .footer-column {
+        flex: 100%;
+        text-align: center;
+        margin: 10px 20px;
+      }
+      
+      .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .footer-column ul li {
+        justify-content: center;
+      }
+      
+      .social-icons {
+        justify-content: center;
+      }
+      
+      .contact-info p {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-section {
+        padding: 3rem 1rem;
+      }
+
+      .header-section h1 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+      }
+      
+      .btn-primary, .btn-outline {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .badges-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .badge-item {
+        width: 80%;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="Imágenes/LogoVet.jpg" alt="PetCare Logo"> PetCare
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Equipo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Testimonios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacto</a>
+          </li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-appointment" href="#">Agendar Cita</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sección de encabezado -->
+  <header>
+    <section class="header-section">
+      <div class="header-container">
+        <h1 class="fade-in">Clínica Veterinaria PetCare <img src="Imágenes/LogoVet.jpg" alt="Nuestro logo" title="PetCare" class="vet-logo"></h1>
+        
+        <div class="badges-container fade-in delay-1">
+          <div class="badge-item">
+            <i class="fas fa-check-circle"></i> Atención 24/7
+          </div>
+          <div class="badge-item">
+            <i class="fas fa-user-md"></i> Veterinarios Certificados
+          </div>
+          <div class="badge-item">
+            <i class="fas fa-medal"></i> Servicio Premiado
+          </div>
+        </div>
+        
+        <div class="content-wrapper fade-in delay-2">
+          <img src="Imágenes/Check.jpg" alt="Atención Prioritaria">
+          <div class="text-content">
+            <p>Para nuestros pacientes, nos esforzamos por ofrecer un cuidado que refleje toda la confianza y lealtad que ellos nos muestran. Con cada diagnóstico y tratamiento, nos aseguramos de proporcionar un entorno seguro, donde se sientan cómodos y libres de estrés. Nuestro objetivo es que cada mascota reciba una atención de calidad que mejore su salud y su bienestar.</p>
+            <a href="mailto:jmoreno12@udi.edu.co" title="Enviar correo" class="btn btn-primary">Solicitar Información</a>
+            <a href="#" class="btn btn-outline">Nuestros Servicios</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <!-- Sección de servicios -->
+  <section class="services-section fade-in">
+    <div class="section-title">
+      <h2>Nuestros Servicios</h2>
+      <p>Ofrecemos atención médica integral para garantizar la salud y felicidad de tu mascota</p>
+    </div>
+    
+    <div class="services-container">
+      <div class="service-card fade-in delay-1">
+        <div class="service-icon">
+          <i class="fas fa-stethoscope"></i>
+        </div>
+        <h3>Consultas Médicas</h3>
+        <p>Diagnóstico y tratamiento de enfermedades con equipos de última tecnología y profesionales altamente capacitados.</p>
+      </div>
+      
+      <div class="service-card fade-in delay-2">
+        <div class="service-icon">
+          <i class="fas fa-syringe"></i>
+        </div>
+        <h3>Vacunación</h3>
+        <p>Planes de vacunación personalizados para mantener a tu mascota protegida contra enfermedades comunes.</p>
+      </div>
+      
+      <div class="service-card fade-in delay-3">
+        <div class="service-icon">
+          <i class="fas fa-cut"></i>
+        </div>
+        <h3>Peluquería</h3>
+        <p>Servicios de estética y limpieza profesional para mantener a tu mascota limpia, saludable y hermosa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de testimonios -->
+  <section class="testimonials-section fade-in">
+    <div class="section-title">
+      <h2>Testimonios</h2>
+      <p>Lo que opinan nuestros clientes sobre nuestros servicios</p>
+    </div>
+    
+    <div class="testimonials-container">
+      <div class="testimonial-card fade-in delay-1">
+        <p class="testimonial-text">La atención que recibió mi perrito Max fue excepcional. El Dr. Rodríguez fue muy paciente y cariñoso, explicando detalladamente el tratamiento. Definitivamente regresaremos.</p>
+        <div class="testimonial-author">
+          <img src="Imágenes/Personaa.jpg" alt="Cliente">
+          <div class="author-info">
+            <h4>Carolina Méndez</h4>
+            <p>Cliente desde 2022</p>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card fade-in delay-2">
+        <p class="testimonial-text">Mi gata Luna necesitaba cirugía y estaba muy nerviosa, pero el equipo de PetCare me mantuvo informada durante todo el proceso. La recuperación fue más rápida de lo esperado.</p>
+        <div class="testimonial-author">
+          <img src="Imágenes/Personab.jpg" alt="Cliente">
+          <div class="author-info">
+            <h4>Roberto García</h4>
+            <p>Cliente desde 2021</p>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#">Nuestro equipo</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Centro de ayuda</a></li>
+        <li><a href="#">Contigo</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Social</h4>
+      <div class="social-icons">
+        <a href="#"><img src="Imágenes/Instagram.svg" alt="Instagram"></a>
+                <a href="#"><img src="Imágenes/X.avif" alt="Twitter"></a>
+                <a href="#"><img src="Imágenes/Linkendin.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <p>Piedecuesta/Santander, City</p>
+      <p>Email: jorgelmoreno1022@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+  <p><cite>Done by Jorge Moreno &copy; 2024</cite></p>
+  </div>
+</footer> 
+
+
+<!-- Bootstrap JS (Opcional si necesitas scripts interactivos) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Enlace a scripts de Bootstrap -->
+</body>
+</html>
